@@ -1,22 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
+// import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
 import Contact from "./pages/contact";
-import NoPage from "./pages/about";
-import NoPage from "./pages/gallery";
+import About from "./pages/about";
+import Gallery from "./pages/gallery";
+import Layout from "./pages/layout";
+import NoPage from "./pages/nopage";
 
-export default function App() {
+function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="blogs" element={<Blogs />} />
+          <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="gallery" element={<Gallery />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
