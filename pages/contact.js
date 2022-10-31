@@ -1,80 +1,44 @@
-
-import { useForm } from 'react-hook-form';
-
-const ContactForm = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors }
-  } = useForm();
-  
-  const onSubmit = async (data) => {
-    const { name, email, subject, message } = data;
-    
-    console.log('Name: ', name);
-    console.log('Email: ', email);
-    console.log('Subject: ', subject);
-    console.log('Message: ', message);
-  };
-  
-    return (
-        <div className='ContactForm'>
-          <div className='container'>
-            <div className='row'>
-              <div className='col-12 text-center'>
-                <div className='contactForm'>
-                  <form id='contact-form' noValidate>
-                    {/* Row 1 of form */}
-                    <div className='row formRow'>
-                      <div className='col-6'>
-                        <input
-                          type='text'
-                          name='name'
-                          className='form-control formInput'
-                          placeholder='Name'
-                        ></input>
-                      </div>
-                      <div className='col-6'>
-                        <input
-                          type='email'
-                          name='email'
-                          className='form-control formInput'
-                          placeholder='Email address'
-                        ></input>
-                      </div>
-                    </div>
-                    {/* Row 2 of form */}
-                    <div className='row formRow'>
-                      <div className='col'>
-                        <input
-                          type='text'
-                          name='subject'
-                          className='form-control formInput'
-                          placeholder='Subject'
-                        ></input>
-                      </div>
-                    </div>
-                    {/* Row 3 of form */}
-                    <div className='row formRow'>
-                      <div className='col'>
-                        <textarea
-                          rows={3}
-                          name='message'
-                          className='form-control formInput'
-                          placeholder='Message'
-                        ></textarea>
-                      </div>
-                    </div>
-                    <button className='submit-btn' type='submit'>
-                      Submit
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
+import React from 'react'
+const Contact = () => {
+  const [formStatus, setFormStatus] = React.useState('Send')
+  const onSubmit = (e) => {
+    e.preventDefault()
+    setFormStatus('Submitting...')
+    const { name, email, message } = e.target.elements
+    let conFom = {
+      name: name.value,
+      email: email.value,
+      message: message.value,
+    }
+    console.log(conFom)
+  }
+  return (
+    <div className="container mt-5">
+      <h2 className="mb-3">React Contact Form Component Example</h2>
+      <form onSubmit={onSubmit}>
+        <div className="mb-3">
+          <label className="form-label" htmlFor="name">
+            Name
+          </label>
+          <input className="form-control" type="text" id="name" required />
         </div>
-      );
-    };
-  export default Contact;
+        <div className="mb-3">
+          <label className="form-label" htmlFor="email">
+            Email
+          </label>
+          <input className="form-control" type="email" id="email" required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label" htmlFor="message">
+            Message
+          </label>
+          <textarea className="form-control" id="message" required />
+        </div>
+        <button className="btn btn-danger" type="submit">
+          {formStatus}
+        </button>
+      </form>
+    </div>
+  )
+}
+export default Contact;
