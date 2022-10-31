@@ -1,4 +1,23 @@
-const Contact = () => {
+
+import { useForm } from 'react-hook-form';
+
+const ContactForm = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm();
+  
+  const onSubmit = async (data) => {
+    const { name, email, subject, message } = data;
+    
+    console.log('Name: ', name);
+    console.log('Email: ', email);
+    console.log('Subject: ', subject);
+    console.log('Message: ', message);
+  };
+  
     return (
         <div className='ContactForm'>
           <div className='container'>
